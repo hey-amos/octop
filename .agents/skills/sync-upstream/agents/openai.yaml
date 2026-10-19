@@ -1,0 +1,3 @@
+interface:
+  display_name: "同步上游版本"
+  short_description: "同步 Octop fork 的上游 main 与原始版本标签，核验引用及发布触发器"

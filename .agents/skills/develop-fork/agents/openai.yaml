@@ -1,0 +1,3 @@
+interface:
+  display_name: "Fork 开发与发布流程"
+  short_description: "管理 Octop 定制开发分支、级联 rebase、发布冻结及修复回流"
