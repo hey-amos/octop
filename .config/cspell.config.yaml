@@ -1,0 +1,30 @@
+---
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: '0.2'
+useGitignore: true
+dictionaryDefinitions:
+  - name: project-words
+    path: './project-words.txt'
+    addWords: true
+# 显式声明所需词典. 不声明时各工具启用的默认集合不同:
+# cspell 命令行会启用 npm 等词典, 而 VS Code 插件不会, 同一份文档两边结果不一致.
+dictionaries:
+  - project-words
+  - en_us
+  - companies
+  - css
+  - filetypes
+  - fullstack
+  - html
+  - markdown
+  - node
+  - npm
+  - softwareTerms
+  - software-tools
+  - typescript
+ignorePaths:
+  - '.config/project-words.txt'
+  - '.git/**'
+  - '.claude/**'
+  - '.agents/**'
+  - '.codex/**'
