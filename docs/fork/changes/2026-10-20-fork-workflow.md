@@ -33,11 +33,21 @@
 - 本次改动仅涉及流程文档、技能和 Git 引用；技能校验与上述隔离 Git 验证不等同于应用测试或定制发布。正式提交仍执行项目既有 pre-commit 检查。
 - 本机 Nginx 监听 443，导致上游 `test_probe_tencent_mirror_unreachable` 的“本机不可达”假设不成立。仅限制检查进程访问 `localhost:443` 后，该用例复核通过；未停止本机服务、修改测试或跳过检查。此隔离仅用于本次本地验证，不作为项目全局配置。
 
+## 后续修复：443 端口测试隔离
+
+- 原因：上述临时限制只对当次检查进程生效。原测试把镜像主机替换为 `127.0.0.1`，实际仍连接固定的 443 端口，本机有服务监听时便会失败。
+- 改动：在 [test_docker_install.py](../../../tests/unit/mobile/test_docker_install.py) 中，用 `AsyncMock` 替换 `docker_install.asyncio.open_connection` 并抛出 `ConnectionRefusedError`，验证真实探测函数返回 `False`，同时断言连接操作被等待一次且参数为镜像主机和 443 端口。移除错误的 `127.0.0.1:1` 注释。
+- 验证：本机 Nginx 继续监听 443，未施加临时网络限制；`uv run --locked pytest tests/unit/mobile/test_docker_install.py -q`：17 项通过。该文件的 Ruff 检查、格式检查和 `git diff --check` 均通过。
+- 本次仅修改测试及本记录，应用探测逻辑不变；实现阶段执行相关模块测试。正式提交继续通过仓库既有 pre-commit 检查及前端构建，不施加临时网络限制。
+
 ## 上游同步注意事项
 
 - fork 专属文件只维护在开发分支；main 保持纯镜像，不合入这些文件。
 - 上游 `AGENTS.md` 的内容会继续更新，override 通过读取原文件继承工程规范。即使没有文本冲突，也需检查新增规范是否与 fork 流程产生语义冲突。
 - 如果上游未来新增同名 `AGENTS.override.md`、技能或 `docs/fork/` 文件，需要明确各自职责并处理冲突；独立文件只能减少冲突，不能保证永远无冲突。
+- 443 修复在上游测试文件中的改动仅涉及 `AsyncMock` 导入和 `test_probe_tencent_mirror_unreachable`。上游修改同一区域时仍可能产生冲突；处理时保留上游新增逻辑，同时确保该用例通过模拟连接失败验证返回 `False`，不依赖本机端口状态，不整文件覆盖。
+- 若上游已提供等效的隔离修复，优先采用上游实现，移除重复的 fork 修改；若探测函数的调用位置或参数改变，相应调整 mock 目标和断言。
+- 同步后运行 `uv run --locked pytest tests/unit/mobile/test_docker_install.py -q`，不再使用临时网络限制来让该用例通过；在本记录中注明 fork 修复是否仍需保留。
 
 ## 未完成事项
 
