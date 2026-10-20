@@ -44,3 +44,4 @@
 |---|---|---|
 | 2026-10-20 | [建立 fork 开发流程与记录入口](changes/2026-10-20-fork-workflow.md) | 分支、技能、Codex override、二改记录 |
 | 2026-10-20 | [使用 uv 管理项目开发环境](changes/2026-10-20-dev-environment.md) | Python 版本、持久解释器、项目虚拟环境与初始化 |
+| 2026-10-20 | [修复下载测试打开系统文件管理器](changes/2026-10-20-local-download-test-isolation.md) | 下载接口测试隔离、mock 位置与调用断言 |
