@@ -25,6 +25,7 @@ import { useTranslation } from "react-i18next";
 import cx from "classnames";
 
 import { preferencesApi } from "../../api/modules/preferences";
+import { useTheme } from "../../context/ThemeContext";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { navAllowed } from "../../utils/permissions";
@@ -71,6 +72,7 @@ export default function OnboardingGuide({
   onClose,
 }: OnboardingGuideProps) {
   const { t } = useTranslation();
+  const { isDark } = useTheme();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const user = useCurrentUser();
@@ -180,7 +182,9 @@ export default function OnboardingGuide({
       >
         <div className={styles.intro}>
           <img
-            src={publicUrl("octop-mascot-peek.webp")}
+            src={publicUrl(
+              isDark ? "brand/shiban-mark-white.svg" : "brand/shiban-wink.svg",
+            )}
             alt=""
             className={styles.mascot}
             draggable={false}

@@ -42,7 +42,8 @@ function browserStorage(): Storage | null {
 }
 
 function notificationIcon(): string {
-  return new URL(publicUrl("pwa-192.png"), window.location.href).href;
+  return new URL(publicUrl("brand/shiban-app-192.png"), window.location.href)
+    .href;
 }
 
 function pushChatPath(parsed: DashboardPushEvent): string {

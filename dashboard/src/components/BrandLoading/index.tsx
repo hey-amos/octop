@@ -22,8 +22,8 @@ export default function BrandLoading({ label, viewport }: BrandLoadingProps) {
   const { mode } = useTheme();
   const logoSrc =
     mode === "dark"
-      ? publicUrl("logo_horizontal_white.png")
-      : publicUrl("logo_horizontal_dark.png");
+      ? publicUrl("brand/shiban-wordmark-white.svg")
+      : publicUrl("brand/shiban-wordmark.svg");
 
   return (
     <div
@@ -32,7 +32,7 @@ export default function BrandLoading({ label, viewport }: BrandLoadingProps) {
       aria-live="polite"
     >
       <div className={styles.stack}>
-        <img className={styles.logo} src={logoSrc} alt="Octop" height={72} />
+        <img className={styles.logo} src={logoSrc} alt="师伴" height={72} />
         <p className={styles.status}>
           <OctopSpinner />
           <span>{label ?? t("common.loading")}</span>

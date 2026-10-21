@@ -83,6 +83,11 @@ async def bootstrap_default_agent(
         expert=expert,
         user_id=user_id,
         agent_id=agent_id,
+        name="师小智" if template_id == DEFAULT_EXPERT_ID else None,
+        color="#147d73" if template_id == DEFAULT_EXPERT_ID else None,
+        icon_url=(
+            "/experts/avatars/general-assistant.svg" if template_id == DEFAULT_EXPERT_ID else None
+        ),
         locale=loc,
         config_extra={"backend": default_home_local_backend(root_dir=root_dir)},
     )

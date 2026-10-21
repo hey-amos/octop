@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import cx from "classnames";
 import styles from "./StreamConnectingIndicator.module.less";
 
-const MASCOT_TYPE = `${import.meta.env.BASE_URL}octop-mascot-type.webp`;
+const MASCOT_TYPE = `${import.meta.env.BASE_URL}brand/shiban-wink.svg`;
 
 interface StreamConnectingIndicatorProps {
   /** Status line under the animation (e.g. 「连接中」). */

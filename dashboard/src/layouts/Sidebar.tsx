@@ -477,8 +477,8 @@ export default function Sidebar({
   // caption row, so the logo starts at the top of the rail.
   const reserveTrafficLightBand = desktopChrome === "mac";
   const wordmarkSrc = isDark
-    ? publicUrl("logo_horizontal_white.png")
-    : publicUrl("logo_horizontal_dark.png");
+    ? publicUrl("brand/shiban-wordmark-white.svg")
+    : publicUrl("brand/shiban-wordmark.svg");
 
   const selectMinimalPane = useCallback(
     (pane: MinimalNavPane, opts?: { expand?: boolean }) => {
@@ -520,9 +520,10 @@ export default function Sidebar({
   const brandInner = (
     <>
       <img
-        src={isRailCollapsed ? publicUrl("logo_mark.svg") : wordmarkSrc}
-        alt="Octop"
-        className={isRailCollapsed ? styles.brandMarkCollapsed : undefined}
+        src={
+          isRailCollapsed ? publicUrl("brand/shiban-app-192.png") : wordmarkSrc
+        }
+        alt="师伴"
         style={{
           height: isRailCollapsed ? 26 : isMobile ? 38 : 36,
           width: "auto",

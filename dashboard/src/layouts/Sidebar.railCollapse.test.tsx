@@ -99,9 +99,10 @@ describe("nav rail fold control", () => {
       "var(--window-controls-inset-start, 0px)",
     );
     expect(rail.style.paddingLeft).toBe("");
-    expect(
-      container.querySelector(`.${styles.brandMarkCollapsed}`),
-    ).toBeTruthy();
+    expect(screen.getByRole("img", { name: "师伴" })).toHaveAttribute(
+      "src",
+      expect.stringContaining("brand/shiban-app-192.png"),
+    );
   });
 
   it("keeps the mobile close control in its drawer header", async () => {

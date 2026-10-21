@@ -53,8 +53,13 @@ describe("index.html boot theme", () => {
   });
 
   it("paints the horizontal lockup for both themes, not the framed favicon", () => {
-    expect(INDEX_HTML).toContain('src="%BASE_URL%logo_horizontal_dark.png"');
-    expect(INDEX_HTML).toContain('src="%BASE_URL%logo_horizontal_white.png"');
+    expect(INDEX_HTML).toContain('src="%BASE_URL%brand/shiban-wordmark.svg"');
+    expect(INDEX_HTML).toContain(
+      'src="%BASE_URL%brand/shiban-wordmark-white.svg"',
+    );
+    expect(INDEX_HTML).toContain(
+      'html[data-theme="dark"] .octop-boot-logo-dark',
+    );
     expect(INDEX_HTML).not.toContain('src="%BASE_URL%favico.svg"');
     expect(INDEX_HTML).not.toContain("logo_vertical_white.svg");
   });

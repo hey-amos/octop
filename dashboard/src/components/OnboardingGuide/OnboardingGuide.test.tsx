@@ -3,8 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { patchMock, userRef } = vi.hoisted(() => ({
+const { patchMock, themeRef, userRef } = vi.hoisted(() => ({
   patchMock: vi.fn(),
+  themeRef: { isDark: false },
   userRef: {
     current: { role: "user", permissions: ["knowledge_bases"] } as {
       role: string;
@@ -13,6 +14,9 @@ const { patchMock, userRef } = vi.hoisted(() => ({
   },
 }));
 
+vi.mock("../../context/ThemeContext", () => ({
+  useTheme: () => themeRef,
+}));
 vi.mock("../../api/modules/preferences", () => ({
   preferencesApi: { patch: patchMock },
 }));
@@ -49,7 +53,22 @@ describe("OnboardingGuide", () => {
   beforeEach(() => {
     patchMock.mockReset();
     patchMock.mockResolvedValue({});
+    themeRef.isDark = false;
     userRef.current = { role: "user", permissions: ["knowledge_bases"] };
+  });
+
+  it.each([
+    [false, "brand/shiban-wink.svg"],
+    [true, "brand/shiban-mark-white.svg"],
+  ])("uses the branded mascot with isDark=%s", (isDark, expectedLogo) => {
+    themeRef.isDark = isDark;
+    renderGuide();
+
+    const mascot = screen.getByRole("dialog").querySelector("img");
+    expect(mascot).toHaveAttribute(
+      "src",
+      expect.stringContaining(expectedLogo),
+    );
   });
 
   it("introduces only the pages the user can open", () => {
