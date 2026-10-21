@@ -484,10 +484,10 @@ export default function LoginPage() {
     <img
       src={
         isDark
-          ? publicUrl("logo_horizontal_white.png")
-          : publicUrl("logo_horizontal_dark.png")
+          ? publicUrl("brand/shiban-wordmark-white.svg")
+          : publicUrl("brand/shiban-wordmark.svg")
       }
-      alt="Octop"
+      alt="师伴"
       style={{
         height: 48,
         width: "auto",

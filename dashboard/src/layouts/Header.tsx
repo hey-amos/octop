@@ -23,8 +23,8 @@ interface HeaderProps {
 export default function Header({ onToggle, isMobile }: HeaderProps) {
   const { isDark } = useTheme();
   const mobileLogoSrc = isDark
-    ? publicUrl("logo_horizontal_white.png")
-    : publicUrl("logo_horizontal_dark.png");
+    ? publicUrl("brand/shiban-wordmark-white.svg")
+    : publicUrl("brand/shiban-wordmark.svg");
 
   if (!isMobile) return null;
 
@@ -80,7 +80,7 @@ export default function Header({ onToggle, isMobile }: HeaderProps) {
         )}
         <img
           src={mobileLogoSrc}
-          alt="octop"
+          alt="师伴"
           style={{
             height: 36,
             width: "auto",

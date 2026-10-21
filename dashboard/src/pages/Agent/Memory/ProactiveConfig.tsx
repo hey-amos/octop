@@ -147,7 +147,7 @@ export default function ProactiveConfig({
           <p className={styles.configDesc}>
             {t(
               "proactiveConfig.description",
-              "等对话闲下来、并且处在关心时段里，才会主动说一句",
+              "等对话闲下来、并且处在关心时段里，师伴才会主动说一句",
             )}
           </p>
         </div>
@@ -161,7 +161,7 @@ export default function ProactiveConfig({
           <span>
             {t(
               "proactiveConfig.episodeBannerText",
-              "Octop 会从你的情绪日记中挑选合适的时机，主动发来一句关心。你可以在「情绪日记」中查看哪些记录会被参考。",
+              "师伴会从你的情绪日记中挑选合适的时机，主动发来一句关心。你可以在「情绪日记」中查看哪些记录会被参考。",
             )}
             {onSwitchToEpisodes && (
               <>
