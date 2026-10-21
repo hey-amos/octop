@@ -271,9 +271,11 @@ export default function LoginPage() {
       >
         <img
           src={
-            isDark ? "/logo_horizontal_white.png" : "/logo_horizontal_dark.png"
+            isDark
+              ? "/brand/shiban-wordmark-white.svg"
+              : "/brand/shiban-wordmark.svg"
           }
-          alt="Octop"
+          alt="师伴"
           style={{
             height: 48,
             width: "auto",

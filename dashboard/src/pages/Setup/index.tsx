@@ -259,10 +259,10 @@ export default function SetupPage() {
               <img
                 src={
                   isDark
-                    ? "/logo_horizontal_white.png"
-                    : "/logo_horizontal_dark.png"
+                    ? "/brand/shiban-wordmark-white.svg"
+                    : "/brand/shiban-wordmark.svg"
                 }
-                alt="Octop"
+                alt="师伴"
                 className={styles.wizardHeaderLogo}
               />
               <div className={styles.wizardHeaderBrandText}>
